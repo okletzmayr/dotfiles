@@ -12,25 +12,24 @@ Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'digitaltoad/vim-pug'
 Plugin 'elzr/vim-json'
 Plugin 'jiangmiao/auto-pairs'
-" Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'Yggdroot/indentLine'
-Plugin 'rdnetto/ycm-Generator'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'tpope/vim-surround'
+Plugin 'yggdroot/indentline'
 
 call vundle#end()
 filetype plugin indent on
 
-" NERDTree {{{
+" NERDTree
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" }}}
 
 " powerline
 set rtp+=~/.local/lib/python3.5/site-packages/powerline/bindings/vim
 set laststatus=2
+set showtabline=2
+set noshowmode
 
 " 2x spaces as tabs
 set tabstop=2
@@ -53,10 +52,6 @@ set relativenumber
 " whitespace
 hi ExtraWhitespace ctermbg=gray
 match ExtraWhitespace /\s\+$/
-" indent
-let g:indent_guides_enable_on_vim_startup=1
-hi IndentGuidesOdd ctermbg=0
-hi IndentGuidesEven ctermbg=8
 
 " keyboard shortcuts
 " paste toggling
