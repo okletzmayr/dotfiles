@@ -12,11 +12,12 @@ Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'digitaltoad/vim-pug'
 Plugin 'elzr/vim-json'
 Plugin 'jiangmiao/auto-pairs'
-Plugin 'nathanaelkane/vim-indent-guides'
+" Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'Yggdroot/indentLine'
 Plugin 'rdnetto/ycm-Generator'
+Plugin 'scrooloose/nerdtree'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'tpope/vim-surround'
-Plugin 'scrooloose/nerdtree'
 
 call vundle#end()
 filetype plugin indent on
