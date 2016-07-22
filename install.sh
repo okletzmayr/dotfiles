@@ -21,14 +21,15 @@ settermprofile() {
 }
 
 echo -e "\nInstalling dotfiles...\n"
-  relink ~/.config/powerline $DIR/config/powerline
-  relink ~/.bashrc           $DIR/bashrc
-  relink ~/.gitconfig        $DIR/gitconfig
-  relink ~/.gitignore        $DIR/gitignore
-  relink ~/.inputrc          $DIR/inputrc
-  relink ~/.tmux.conf        $DIR/tmux.conf
-  relink ~/.vimrc            $DIR/vimrc
-  relink ~/.togglebg.sh      $DIR/togglebg.sh
+  relink ~/.config/powerline     $DIR/config/powerline
+  relink ~/.gnupg/gpg-agent.conf $DIR/gnupg/gpg-agent.conf
+  relink ~/.bashrc               $DIR/bashrc
+  relink ~/.gitconfig            $DIR/gitconfig
+  relink ~/.gitignore            $DIR/gitignore
+  relink ~/.inputrc              $DIR/inputrc
+  relink ~/.tmux.conf            $DIR/tmux.conf
+  relink ~/.vimrc                $DIR/vimrc
+  relink ~/.togglebg.sh          $DIR/togglebg.sh
 echo -e "done."
 
 if ! [ -d ~/.vim/bundle/Vundle.vim  ]; then
