@@ -12,6 +12,7 @@ Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'digitaltoad/vim-pug'
 Plugin 'elzr/vim-json'
 Plugin 'jiangmiao/auto-pairs'
+Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'tpope/vim-surround'
@@ -19,11 +20,6 @@ Plugin 'yggdroot/indentline'
 
 call vundle#end()
 filetype plugin indent on
-
-" NERDTree
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " powerline
 set rtp+=~/.local/lib/python3.5/site-packages/powerline/bindings/vim
@@ -59,7 +55,7 @@ set pastetoggle=<F2>
 " spell toggling
 map <F5> :setlocal spell! spelllang=en_us<CR>
 " NERDTree
-map <C-N> :NERDTreeToggle<CR>
+map <C-N> :NERDTreeTabsToggle<CR>
 " disable arrow keys
 inoremap  <Up>     <NOP>
 inoremap  <Down>   <NOP>
