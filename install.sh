@@ -46,6 +46,15 @@ if ! [ -d ~/.local/share/fonts ]; then
   echo -e "done."
 fi
 
+if [ ! -f ~/.local/bin/bfg.jar  ]; then
+  echo -e "\nInstalling BFG..."
+  if [ ! -d ~/.local/bin ]; then
+    mkdir ~/.local/bin
+  fi
+  $(wget --content-disposition 'https://search.maven.org/remote_content?g=com.madgag&a=bfg&v=LATEST' -O ~/.local/bin/bfg.jar -q --show-progress)
+  echo -e "done."
+fi
+
 echo -e "\nSetting up Gnome-Terminal...\n"
   settermprofile background-color "rgb(0,43,54)"
   settermprofile foreground-color "rgb(131,148,150)"
