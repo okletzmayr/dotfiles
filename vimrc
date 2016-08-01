@@ -37,8 +37,10 @@ set expandtab
 
 " colorscheme stuff
 syntax enable
+let g:solarized_termtrans=1
 set background=dark
 colorscheme solarized
+call togglebg#map("<F5>")
 
 " highlighting stuff
 " spelling
@@ -48,14 +50,15 @@ hi clear SpellCap
 set hlsearch
 set relativenumber
 " whitespace
-hi ExtraWhitespace ctermbg=gray
-match ExtraWhitespace /\s\+$/
+set list
+set listchars=trail:·
+autocmd BufWritePre * %s/\s\+$//e
 
 " keyboard shortcuts
 " paste toggling
 set pastetoggle=<F2>
 " spell toggling
-map <F5> :setlocal spell! spelllang=en_us<CR>
+map <F3> :setlocal spell! spelllang=en_us<CR>
 " NERDTree
 map <C-N> :NERDTreeTabsToggle<CR>
 " disable arrow keys
