@@ -105,3 +105,6 @@ alias docker-node='docker run --rm --name dev_node -itv $PWD:/usr/src/app -v $HO
 
 export GIT_PS1_SHOWDIRTYSTATE=1
 export PS1='$(_dir_chomp "$(pwd)" 16)$(__git_ps1)$ '
+
+# disable XON/XOFF flow control
+stty -ixon
