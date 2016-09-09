@@ -1,4 +1,4 @@
-" vundle plugins {{{
+" vundle plugins
 set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -23,8 +23,8 @@ Plugin 'yggdroot/indentline'
 
 call vundle#end()
 filetype plugin indent on
-"}}}
-" appearance {{{
+
+" appearance
 " colorscheme stuff
 syntax enable
 let g:solarized_termtrans=1
@@ -63,8 +63,8 @@ set splitright
 " whitespace
 set list
 set listchars=tab:»·,trail:·
-"}}}
-" other options"{{{
+
+" other options
 " make backspace work like sane editors
 set backspace=2
 " change to the foldmethod used in this vimrc
@@ -78,8 +78,8 @@ autocmd FileType html,json setlocal ts=2 sw=2 sts=0 noet
 
 " autoremove whitespace on BufWrite
 autocmd BufWritePre * %s/\s\+$//e
-"}}}
-" keyboard shortcuts {{{
+
+" keyboard shortcuts
 " paste toggling
 set pastetoggle=<F2>
 " spell toggling
@@ -102,4 +102,4 @@ noremap   <Up>     <NOP>
 noremap   <Down>   <NOP>
 noremap   <Left>   <NOP>
 noremap   <Right>  <NOP>
-"}}}
+
