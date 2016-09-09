@@ -14,11 +14,13 @@ Plugin 'digitaltoad/vim-pug'
 Plugin 'elzr/vim-json'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'kabbamine/zeavim.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
+Plugin 'valloric/youcompleteme'
 Plugin 'yggdroot/indentline'
 
 call vundle#end()
