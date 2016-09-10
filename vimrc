@@ -27,36 +27,34 @@ call vundle#end()
 filetype plugin indent on
 
 " appearance
-" colorscheme stuff
+" colorscheme
 syntax enable
-let g:solarized_termtrans=1
-set background=dark
 colorscheme solarized
+
+" ToggleBG function
+fu! ToggleBG()
+  let &background = (&background == "dark"?"light" : "dark")
+
+  if &background == "dark"
+    hi CursorLineNr ctermbg=0
+  elseif &background == "light"
+    hi CursorLineNr ctermbg=7
+  endif
+
+  hi SpecialKey ctermbg=NONE
+  hi SpellBad cterm=undercurl
+  hi clear SpellCap
+endfu
+
+" call it once to set background and highlights
+call ToggleBG()
 
 " gutter settings
 set number
 set relativenumber
 
 " highlighting stuff
-fu! OwnHighlights()
-  hi DiffAdd ctermbg=NONE
-  hi DiffChange ctermbg=NONE
-  hi DiffDelete ctermbg=NONE
-  hi DiffText ctermbg=NONE
-  hi FoldColumn ctermbg=NONE
-  hi Folded ctermbg=NONE
-  hi LineNr ctermbg=NONE
-  hi SpecialKey ctermbg=NONE
-  hi SpellBad cterm=undercurl
-  hi clear SpellCap
-endfu
-call OwnHighlights()
 set hlsearch
-
-" powerline
-set rtp+=~/.local/lib/python3.5/site-packages/powerline/bindings/vim
-set laststatus=2
-set noshowmode
 
 " split settings
 set splitbelow
@@ -69,8 +67,6 @@ set listchars=tab:»·,trail:·
 " other options
 " make backspace work like sane editors
 set backspace=2
-" change to the foldmethod used in this vimrc
-set foldmethod=marker
 
 " indentations settings
 set ts=2 sw=2 sts=2 et
