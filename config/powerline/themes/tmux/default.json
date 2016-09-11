@@ -1,45 +1,22 @@
 {
 	"segments": {
 		"right": [
-      {
-        "function": "powerline.segments.common.players.dbus_player",
-        "name": "player",
-        "args": {
-          "state_symbols": {
-            "play": "▸",
-            "pause": "▹",
-            "stop": "",
-            "fallback": ""
-          },
-          "format": "{state_symbol} {artist} - {title}",
-          "bus_name": "org.mpris.MediaPlayer2.spotify",
-          "player_path": "/org/mpris/MediaPlayer2",
-          "iface_prop": "org.freedesktop.DBus.Properties",
-          "iface_player": "org.mpris.MediaPlayer2.Player"
-        }
-      },
-      {
-        "function": "powerline.segments.common.bat.battery",
-        "name": "battery",
-        "args": {
-          "online": "🔌 ",
-          "offline": "🔋 "
-        }
-      },
-      {
-        "function": "powerline.segments.common.vcs.branch",
-        "name": "vcs"
-      },
-      {
-        "function": "powerline.segments.common.env.cwd",
-        "name": "cwd"
-      },
 			{
-				"function": "powerline.segments.common.time.date",
-        "name": "time",
-        "args": {
-          "format": "%H:%M"
-        }
+				"function": "powerline.segments.common.players.dbus_player",
+				"name": "player",
+				"args": {
+					"state_symbols": {
+						"play": "▸",
+						"pause": "▹",
+						"stop": "",
+						"fallback": ""
+					},
+					"format": "{state_symbol} {artist} - {title}",
+					"bus_name": "org.mpris.MediaPlayer2.spotify",
+					"player_path": "/org/mpris/MediaPlayer2",
+					"iface_prop": "org.freedesktop.DBus.Properties",
+					"iface_player": "org.mpris.MediaPlayer2.Player"
+				}
 			}
 		]
 	}
