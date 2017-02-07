@@ -1,6 +1,0 @@
-{
-	"name": "Solarized dark",
-	"groups": {
-		"player": { "fg": "solarized:base1", "bg": "solarized:base03", "attrs": [] }
-	}
-}

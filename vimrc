@@ -6,8 +6,8 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'altercation/vim-colors-solarized'
 Plugin 'benmills/vimux'
+Plugin 'chriskempson/base16-vim'
 Plugin 'christoomey/vim-sort-motion'
 Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'digitaltoad/vim-pug'
@@ -21,6 +21,8 @@ Plugin 'tomtom/tcomment_vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'valloric/youcompleteme'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'yggdroot/indentline'
 
 call vundle#end()
@@ -29,25 +31,10 @@ filetype plugin indent on
 " appearance
 " colorscheme
 syntax enable
-colorscheme solarized
-
-" ToggleBG function
-fu! ToggleBG()
-  let &background = (&background == "dark"?"light" : "dark")
-
-  if &background == "dark"
-    hi CursorLineNr ctermbg=0
-  elseif &background == "light"
-    hi CursorLineNr ctermbg=7
-  endif
-
-  hi SpecialKey ctermbg=NONE
-  hi SpellBad cterm=undercurl
-  hi clear SpellCap
-endfu
-
-" call it once to set background and highlights
-call ToggleBG()
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+endif
 
 " gutter settings
 set number
@@ -69,6 +56,19 @@ set list
 set listchars=tab:»·,trail:·
 
 " other options
+" airline
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+set laststatus=2
+set showtabline=2
+set noshowmode
+" backup and swapfile directories
+set backupdir=~/.vim/tmp,~/.tmp,/var/tmp,/tmp
+set directory=~/.vim/tmp,~/.tmp,/var/tmp,/tmp
+" redefine word boundaries
+set iskeyword-=_
+
 " make backspace work like sane editors
 set backspace=2
 
@@ -77,7 +77,7 @@ set ts=2 sw=2 sts=2 et
 " indentation autocmds for some filetypes
 autocmd FileType python setlocal ts=4 sw=4 sts=4 et
 autocmd FileType python let b:syntastic_python_python_exec = syntastic#util#parseShebang()['exe']
-autocmd FileType html,json setlocal ts=2 sw=2 sts=0 noet
+autocmd FileType html,json setlocal ts=2 sw=2 sts=0 et
 
 " autoremove whitespace on BufWrite
 autocmd BufWritePre * %s/\s\+$//e
@@ -87,10 +87,7 @@ autocmd BufWritePre * %s/\s\+$//e
 set pastetoggle=<F2>
 
 " spell toggling
-map <F3> :set spell! spelllang=en_us<CR>
-
-" ToggleBG
-map <F4> :call ToggleBG()<CR>
+map <F3> :set spell! spelllang=en,de<CR>
 
 " run current buffer in Vimux Pane
 map <F5> :w<CR>:call VimuxInterruptRunner()<CR>:call VimuxRunCommand("clear; " . expand("%:p"))<CR>
