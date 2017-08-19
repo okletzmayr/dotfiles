@@ -25,64 +25,26 @@ vmkdir() {
   echo -e "created directory: $1"
 }
 
-echo -e "\nchecking submodules..."
-  # remember original dir to switch back to after git command
-  OLDDIR=$(pwd)
-  cd $DIR
-  git submodule update --init --recursive
-  cd $OLDDIR
-echo -e "done."
-
 echo -e "\ncreating directories..."
+  vmkdir -p ~/.config/nvim/tmp
+  vmkdir -p ~/.oh-my-zsh/custom-themes
   vmkdir -p ~/.gnupg
-  vmkdir -p ~/.local/bin
-  vmkdir -p ~/.tmux
-  vmkdir -p ~/.vim/tmp
 echo -e "done."
 
 echo -e "\ninstalling dotfiles...\n"
-  relink ~/.gnupg/gpg-agent.conf $DIR/gnupg/gpg-agent.conf
-  relink ~/.gitconfig            $DIR/gitconfig
-  relink ~/.gitignore            $DIR/gitignore
-  relink ~/.tmux.conf            $DIR/tmux.conf
-  relink ~/.vimrc                $DIR/vimrc
-  relink ~/.zshrc                $DIR/zshrc
+  relink ~/.gnupg/gpg-agent.conf                       $DIR/gnupg/gpg-agent.conf
+  relink ~/.oh-my-zsh/custom/themes/custom1.zsh-theme  $DIR/oh-my-zsh/custom/themes/custom1.zsh-theme
+  relink ~/.gitconfig                                  $DIR/gitconfig
+  relink ~/.gitignore                                  $DIR/gitignore
+  relink ~/.ideavimrc                                  $DIR/ideavimrc
+  relink ~/.vimrc                                      $DIR/vimrc
+  relink ~/.zshrc                                      $DIR/zshrc
 echo -e "done."
 
-if ! [ -d ~/.vim/bundle/Vundle.vim ]; then
+if ! [ -d ~/.config/nvim/bundle/Vundle.vim ]; then
   echo -e "\ninstalling Vundle.vim...\n"
-  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+  git clone https://github.com/VundleVim/Vundle.vim.git ~/.config/nvim/bundle/Vundle.vim
   echo -e "\nrunning VundleInstall...\n"
-  vim +PluginInstall +qall
-  echo -e "done."
-fi
-
-if ! [ -d ~/.config/base16-shell ]; then
-  echo -e "\ncloning base16-shell...\n"
-  git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
-  echo -e "done."
-fi
-
-if ! [ -d ~/.config/base16-gnome-terminal ]; then
-  echo -e "\ncloning base16-gnome-terminal...\n"
-  git clone https://github.com/chriskempson/base16-gnome-terminal.git ~/.config/base16-gnome-terminal
-  echo -e "done."
-fi
-
-if ! [ -d ~/.tmux/themepack ]; then
-  echo -e "\ncloning tmux-themepack\n"
-  git clone https://github.com/jimeh/tmux-themepack.git ~/.tmux/themepack
-  echo -e "done."
-fi
-
-if ! [ -d ~/.local/share/fonts ]; then
-  echo -e "\ninstalling fonts for powerline...\n"
-  $DIR/submodules/powerline-fonts/install.sh
-  echo -e "done."
-fi
-
-if [ ! -f ~/.local/bin/bfg.jar  ]; then
-  echo -e "\ninstalling BFG..."
-  $(wget --content-disposition 'https://search.maven.org/remote_content?g=com.madgag&a=bfg&v=LATEST' -O ~/.local/bin/bfg.jar -q --show-progress)
+  nvim +PluginInstall +qall
   echo -e "done."
 fi

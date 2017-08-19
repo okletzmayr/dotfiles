@@ -1,42 +1,43 @@
-# history settings
-HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
-setopt hist_find_no_dups
-setopt hist_ignore_dups
-setopt hist_ignore_space
+# Path to your oh-my-zsh installation.
+export ZSH=$HOME/.oh-my-zsh
 
-# vi keybindings
-# http://superuser.com/questions/476532
-bindkey -v
-export KEYTIMEOUT=1
-bindkey '^P' up-history
-bindkey '^N' down-history
-bindkey "^?" backward-delete-char
-bindkey "^W" backward-kill-word
-bindkey '^U' backward-kill-line
-bindkey -sM vicmd '^[' '^G'
-bindkey -rM viins '^X'
-bindkey -M viins '^X,' _history-complete-newer \
-                 '^X/' _history-complete-older \
-                 '^X`' _bash_complete-word
+# show command execution time in history
+HIST_STAMPS="yyyy-mm-dd"
 
-# Prompt
-export  PROMPT="[%2~] "
+# customizations
+ZSH_THEME="custom1"
 
-# auto completion
-autoload -Uz compinit
-compinit -u
-fpath=(/usr/local/share/zsh-completions $fpath)
+
+# plugins (plugins can be found in ~/.oh-my-zsh/plugins/*)
+plugins=(docker git osx vi-mode)
+
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+# aliases
+alias vim='nvim'
 
 # base16 shell
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 base16_tomorrow-night
 
-# aliases
-alias vim=nvim
-alias ll='/usr/local/opt/coreutils/libexec/gnubin/ls -lAh --group-directories-first'
+# gpg agent variables
+if [ -f "${HOME}/.gpg-agent-info" ]; then
+   . "${HOME}/.gpg-agent-info"
+     export GPG_AGENT_INFO
+     export SSH_AUTH_SOCK
+     export SSH_AGENT_PID
+fi
 
-# disable XON/XOFF flow control
-stty -ixon
+# iTerm2
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# nvm
+export NVM_DIR="$HOME/.nvm"
+. "/usr/local/opt/nvm/nvm.sh"
+
+# pyenv
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+export VIRTUAL_ENV_DISABLE_PROMPT=1

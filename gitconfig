@@ -5,8 +5,8 @@
 
 [alias]
   up = "!git remote update -p; git merge --ff-only @{u}"
-  lol = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(red)- %an%C(reset)%C(bold yellow)%d%C(reset)'
-  lola = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(red)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+  lol = log --graph --format=format:'%>|(14)%Cblue%h%Creset %Cgreen%><(14)%ar%Creset %C(dim)[%G?]%Creset %s%C(yellow)%d%Creset'
+  lola = log --graph --format=format:'%>|(14)%Cblue%h%Creset %Cgreen%><(14)%ar%Creset %C(dim)[%G?]%Creset %s%C(yellow)%d%Creset' --all
 
 [bash]
   showDirtyState = true
@@ -17,6 +17,7 @@
 [core]
   excludesfile = ~/.gitignore
   fsyncObjectFiles = true
+  autocrlf = input
 
 [color]
   branch = auto
