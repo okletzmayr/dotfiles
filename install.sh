@@ -27,18 +27,19 @@ vmkdir() {
 
 echo -e "\ncreating directories..."
   vmkdir -p ~/.config/nvim/tmp
-  vmkdir -p ~/.oh-my-zsh/custom-themes
+  vmkdir -p ~/.config/zsh/themes
   vmkdir -p ~/.gnupg
 echo -e "done."
 
 echo -e "\ninstalling dotfiles...\n"
-  relink ~/.gnupg/gpg-agent.conf                       $DIR/gnupg/gpg-agent.conf
-  relink ~/.oh-my-zsh/custom/themes/custom1.zsh-theme  $DIR/oh-my-zsh/custom/themes/custom1.zsh-theme
-  relink ~/.gitconfig                                  $DIR/gitconfig
-  relink ~/.gitignore                                  $DIR/gitignore
-  relink ~/.ideavimrc                                  $DIR/ideavimrc
-  relink ~/.vimrc                                      $DIR/vimrc
-  relink ~/.zshrc                                      $DIR/zshrc
+  relink ~/.gnupg/gpg-agent.conf                  $DIR/gnupg/gpg-agent.conf
+  relink ~/.config/zsh/themes/custom1.zsh-theme   $DIR/config/zsh/themes/custom1.zsh-theme
+  relink ~/.config/nvim/init.vim                  $DIR/config/nvim/init.vim
+  relink ~/.gitconfig                             $DIR/gitconfig
+  relink ~/.gitignore                             $DIR/gitignore
+  relink ~/.ideavimrc                             $DIR/ideavimrc
+  relink ~/.vimrc                                 $DIR/vimrc
+  relink ~/.zshrc                                 $DIR/zshrc
 echo -e "done."
 
 if ! [ -d ~/.config/nvim/bundle/Vundle.vim ]; then
