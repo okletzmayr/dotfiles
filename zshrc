@@ -5,6 +5,7 @@ export ZSH=$HOME/.oh-my-zsh
 HIST_STAMPS="yyyy-mm-dd"
 
 # customizations
+ZSH_CUSTOM=$HOME/.config/zsh
 ZSH_THEME="custom1"
 
 

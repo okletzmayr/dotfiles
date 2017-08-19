@@ -48,3 +48,9 @@ if ! [ -d ~/.config/nvim/bundle/Vundle.vim ]; then
   nvim +PluginInstall +qall
   echo -e "done."
 fi
+
+if ! [ -d ~/.config/base16-shell ]; then
+  echo -e "\ncloning base16-shell...\n"
+  git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
+  echo -e "done."
+fi
