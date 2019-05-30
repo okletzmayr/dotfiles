@@ -1,5 +1,9 @@
-# Path to your oh-my-zsh installation.
+################################## oh-my-zsh ###################################
+# path to the oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
+
+# set lang in case it's not set via Terminal Application
+export LANG=en_US.UTF-8
 
 # show command execution time in history
 HIST_STAMPS="yyyy-mm-dd"
@@ -8,37 +12,44 @@ HIST_STAMPS="yyyy-mm-dd"
 ZSH_CUSTOM=$HOME/.config/zsh
 ZSH_THEME="custom1"
 
-
-# plugins (plugins can be found in ~/.oh-my-zsh/plugins/*)
-plugins=(docker git osx vi-mode)
+# plugins (others can be found in ~/.oh-my-zsh/plugins/*)
+plugins=(docker dotenv git gitignore gpg-agent jsontools osx pyenv vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-# aliases
+#################################### aliases ###################################
+# use neovim as vim
 alias vim='nvim'
 
-# base16 shell
+################################## color theme #################################
+# base16 color theme
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
-base16_tomorrow-night
+base16_eighties
 
-# gpg agent variables
-if [ -f "${HOME}/.gpg-agent-info" ]; then
-   . "${HOME}/.gpg-agent-info"
-     export GPG_AGENT_INFO
-     export SSH_AUTH_SOCK
-     export SSH_AGENT_PID
-fi
-
-# iTerm2
+##################################### misc #####################################
+# iTerm integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-# nvm
+################################## javascript ##################################
+# use node from nvm
 export NVM_DIR="$HOME/.nvm"
-. "/usr/local/opt/nvm/nvm.sh"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# pyenv
+################################### python #####################################
+# pyenv and pyenv-virtualenv
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
-export VIRTUAL_ENV_DISABLE_PROMPT=1
+
+# pip completion
+function _pip_completion {
+  local words cword
+  read -Ac words
+  read -cn cword
+  reply=( $( COMP_WORDS="$words[*]" \
+             COMP_CWORD=$(( cword-1 )) \
+             PIP_AUTO_COMPLETE=1 $words[1] ) )
+}
+compctl -K _pip_completion pip
+

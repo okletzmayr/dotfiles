@@ -20,6 +20,7 @@ Plugin 'elzr/vim-json'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'mattn/emmet-vim'
+Plugin 'python/black'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'tomtom/tcomment_vim'
@@ -42,12 +43,13 @@ if filereadable(expand("~/.vimrc_background"))
 endif
 
 
-" gutter settings
+" gutter settings - show line and relative line numbers
 set number
 set relativenumber
 
 " highlighting stuff
 set hlsearch
+hi NonText cterm=NONE ctermfg=NONE
 
 " NERDTree ignore:
 let NERDTreeIgnore=[]
@@ -68,13 +70,17 @@ set listchars=tab:»·,trail:·
 " airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
+" always show the statusline - the one on the bottom
 set laststatus=2
+" always show the tabline
 set showtabline=2
+" never show the NORMAL, INSERT, etc. in the command line,
+" as it's shown via Airline
 set noshowmode
 " backup and swapfile directories
 set backupdir=~/.config/nvim/tmp,~/.tmp,/var/tmp,/tmp
 set directory=~/.config/nvim/tmp,~/.tmp,/var/tmp,/tmp
-" redefine word boundaries
+" redefine word boundaries - '_' is a word seperator
 set iskeyword-=_
 
 " make backspace work like sane editors
@@ -115,5 +121,7 @@ noremap   <Down>   <NOP>
 noremap   <Left>   <NOP>
 noremap   <Right>  <NOP>
 
-let g:python_host_prog = "/Users/okletzmayr/.pyenv/versions/2.7.13/bin/python"
-let g:python3_host_prog = "/Users/okletzmayr/.pyenv/versions/nvim/bin/python"
+" python, ruby, etc.
+let g:python_host_prog = "~/.pyenv/versions/neovim-python2/bin/python"
+let g:python3_host_prog = "~/.pyenv/versions/neovim-python3/bin/python"
+let g:ycm_python_binary_path = "~/.pyenv/versions/neovim/bin/python"

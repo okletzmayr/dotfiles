@@ -1,10 +1,10 @@
 [user]
   name = Oliver Kletzmayr
-  email = okletzmayr@gmail.com
-  signingkey = 5E652A5F
+  email = oliver@kletzmayr.com
 
 [alias]
   up = "!git remote update -p; git merge --ff-only @{u}"
+  logo = log --format=format:'%>|(8)%Cblue%h%Creset %Cgreen%><(14)%ar%Creset %C(dim)[%G?]%Creset %s%C(yellow)%d%Creset'
   lol = log --graph --format=format:'%>|(14)%Cblue%h%Creset %Cgreen%><(14)%ar%Creset %C(dim)[%G?]%Creset %s%C(yellow)%d%Creset'
   lola = log --graph --format=format:'%>|(14)%Cblue%h%Creset %Cgreen%><(14)%ar%Creset %C(dim)[%G?]%Creset %s%C(yellow)%d%Creset' --all
 
