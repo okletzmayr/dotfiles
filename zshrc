@@ -13,34 +13,22 @@ ZSH_CUSTOM=$HOME/.config/zsh
 ZSH_THEME="custom1"
 
 # plugins (others can be found in ~/.oh-my-zsh/plugins/*)
-plugins=(docker dotenv git gitignore gpg-agent jsontools osx pyenv vi-mode)
+plugins=(django docker docker-compose dotenv git gitignore gpg-agent osx)
 
 source $ZSH/oh-my-zsh.sh
 
 #################################### aliases ###################################
 # use neovim as vim
 alias vim='nvim'
-
-################################## color theme #################################
-# base16 color theme
-BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
-base16_eighties
+alias lstty='ls /dev | grep -E "^(tty\.|cu\.)" --color=never'
 
 ##################################### misc #####################################
 # iTerm integration
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-################################## javascript ##################################
-# use node from nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[[ $TERM_PROGRAM == 'iTerm.app' ]] && \
+  test -e "${HOME}/.iterm2_shell_integration.zsh" && \
+  source "${HOME}/.iterm2_shell_integration.zsh"
 
 ################################### python #####################################
-# pyenv and pyenv-virtualenv
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
 
 # pip completion
 function _pip_completion {
@@ -52,4 +40,12 @@ function _pip_completion {
              PIP_AUTO_COMPLETE=1 $words[1] ) )
 }
 compctl -K _pip_completion pip
+
+# pipx
+autoload -U bashcompinit
+bashcompinit
+eval "$(register-python-argcomplete pipx)"
+
+##################################### ruby #####################################
+eval "$(rbenv init -)"
 
