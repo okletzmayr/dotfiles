@@ -28,16 +28,17 @@ vmkdir() {
 echo -e "\ncreating directories..."
   vmkdir -p ~/.config/nvim/tmp
   vmkdir -p ~/.config/zsh/themes
+  vmkdir -p ~/.config/tmux
   vmkdir -p ~/.gnupg
 echo -e "done."
 
 echo -e "\ninstalling dotfiles...\n"
-  relink ~/.gnupg/gpg-agent.conf                  $DIR/gnupg/gpg-agent.conf
   relink ~/.config/zsh/themes/custom1.zsh-theme   $DIR/config/zsh/themes/custom1.zsh-theme
   relink ~/.config/nvim/init.vim                  $DIR/config/nvim/init.vim
   relink ~/.gitconfig                             $DIR/gitconfig
   relink ~/.gitignore                             $DIR/gitignore
   relink ~/.ideavimrc                             $DIR/ideavimrc
+  relink ~/.tmux.conf                             $DIR/tmux.conf
   relink ~/.vimrc                                 $DIR/vimrc
   relink ~/.zshrc                                 $DIR/zshrc
 echo -e "done."
@@ -50,8 +51,9 @@ if ! [ -d ~/.config/nvim/bundle/Vundle.vim ]; then
   echo -e "done."
 fi
 
-if ! [ -d ~/.config/base16-shell ]; then
-  echo -e "\ncloning base16-shell...\n"
-  git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
+if ! [ -d ~/.config/tmux/themepack ]; then
+  echo -e "\ninstalling tmux themepack...\n"
+  git clone https://github.com/jimeh/tmux-themepack.git ~/.config/tmux/themepack
   echo -e "done."
 fi
+
