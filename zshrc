@@ -13,7 +13,7 @@ ZSH_CUSTOM=$HOME/.config/zsh
 ZSH_THEME="custom1"
 
 # plugins (others can be found in ~/.oh-my-zsh/plugins/*)
-plugins=(django docker docker-compose dotenv git gitignore gpg-agent osx)
+plugins=(django docker docker-compose dotenv git gitignore gpg-agent osx pipenv)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -45,6 +45,14 @@ compctl -K _pip_completion pip
 autoload -U bashcompinit
 bashcompinit
 eval "$(register-python-argcomplete pipx)"
+
+# virtualenv prompt
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+function __virtualenv_ps1 {
+    echo "${VIRTUAL_ENV:+(${VIRTUAL_ENV##*/})}"
+}
+
+export RPROMPT="\$(__virtualenv_ps1)"
 
 ##################################### ruby #####################################
 eval "$(rbenv init -)"

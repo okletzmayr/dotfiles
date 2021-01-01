@@ -1,5 +1,5 @@
 " neovim
-language en_US
+language en_US.UTF-8
 set termguicolors
 
 " vundle plugins

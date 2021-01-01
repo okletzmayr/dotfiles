@@ -1,6 +1,7 @@
 [user]
   name = Oliver Kletzmayr
   email = oliver@kletzmayr.com
+  signingkey = 91691E9828CF86CB3D6BCD6CAEC3577B8B4E9731
 
 [alias]
   up = "!git remote update -p; git merge --ff-only @{u}"
@@ -48,3 +49,9 @@
 
 [push]
   default = current
+
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
